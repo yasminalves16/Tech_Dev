@@ -6,7 +6,9 @@
   "scripts": {
     "test": "NODE_ENV=test jest",
     "dev": "ts-node-dev src/server.ts",
-    "typeorm": "typeorm-ts-node-commonjs"
+    "typeorm": "typeorm-ts-node-commonjs",
+    "build": "tsc",
+    "start": "node dist/app.js"
   },
   "repository": {
     "type": "git",
