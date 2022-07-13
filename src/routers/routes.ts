@@ -1,3 +1,4 @@
+import { createUserController } from './../controllers/users/createUser.controller';
 import { Router, Request, Response } from 'express';
 import { multerConfig } from '../config/multer';
 import multer from 'multer';
@@ -15,5 +16,7 @@ const routes = Router();
 //     console.log(request.file)
 //     return response.json({ message: 'hello Code'})
 // })
+
+routes.post("", createUserController)
 
 export default routes;

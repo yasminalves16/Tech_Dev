@@ -22,6 +22,7 @@
   },
   "homepage": "https://github.com/lestardeangelo/Trabalho-Conclusao-m4#readme",
   "dependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/jest": "^28.1.4",
     "bcryptjs": "^2.4.3",
     "dotenv": "^16.0.1",
