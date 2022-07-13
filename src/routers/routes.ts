@@ -1,19 +1,31 @@
 import { Router, Request, Response } from 'express';
-import { multerConfig } from '../config/multer';
+import  multerConfig  from '../config/multer';
 import multer from 'multer';
+import UploadImagesService from '../services/images/UploadimagesService';
+import DeleteImagesService from '../services/images/DeleteimagesService'
 
 const routes = Router();
+const upload = multer(multerConfig)
 
-// EXEMPLO PARA ADICIÇÃO DE IMAGEM COM MULTER - DEVE DEIXAR NA ROTA DE CADASTRO (POST) COMO SE FOSSE UM MIDDLEWAR.
-//NA HORA DE DEFINIR A ROTA DE TESTE PARA O INSOMNIA DEVE CRIAR COM O TIPO DO BADY SENDO (MULTIPART)
-//O NOME DA REQUISIÇÃO DEVE SER O MESMO DEFINIDO NO (.SINGLE('NOME DEFINIDO'))
-//E NOO VALUE PODE SER DEFINIDO COMO FILE PARA POSSIBILITAR A ADIÇÃO DA IMAGEM
+routes.post('/', upload.single('image'), async (request, response )=>{
 
-//exemplo de requisição
+    const { file } = request;
 
-// routes.post('/upload', multer(multerConfig).single('file'), (request: Request, response: Response)=>{
-//     console.log(request.file)
-//     return response.json({ message: 'hello Code'})
-// })
+    const uploadImagesService = new UploadImagesService();
+
+    await uploadImagesService.execute(file);
+
+    return response.send();
+})
+
+routes.delete('/:filename', async (request, response) =>{
+    const { filename } = request.params;
+
+    const deleteImagesService = new DeleteImagesService();
+
+    await deleteImagesService.execute(filename);
+
+    return response.send();
+})
 
 export default routes;
