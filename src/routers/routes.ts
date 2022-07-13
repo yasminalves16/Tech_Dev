@@ -9,7 +9,7 @@ const upload = multer(multerConfig)
 
 routes.post('/', upload.single('image'), async (request, response )=>{
 
-    const { file } = request;
+    const { file } = request.body;
 
     const uploadImagesService = new UploadImagesService();
 
