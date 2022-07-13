@@ -1,3 +1,4 @@
+import { createUserController } from './../controllers/users/createUser.controller';
 import { Router, Request, Response } from 'express';
 import  multerConfig  from '../config/multer';
 import multer from 'multer';
@@ -27,5 +28,7 @@ routes.delete('/:filename', async (request, response) =>{
 
     return response.send();
 })
+
+routes.post("", createUserController)
 
 export default routes;
