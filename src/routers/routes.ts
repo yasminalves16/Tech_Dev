@@ -1,3 +1,4 @@
+import { createUserController } from './../controllers/users/createUser.controller';
 import { Router, Request, Response } from 'express';
 import  multerConfig  from '../config/multer';
 import multer from 'multer';
@@ -9,7 +10,7 @@ const upload = multer(multerConfig)
 
 routes.post('/', upload.single('image'), async (request, response )=>{
 
-    const { file } = request;
+    const { file } = request.body;
 
     const uploadImagesService = new UploadImagesService();
 
@@ -27,5 +28,7 @@ routes.delete('/:filename', async (request, response) =>{
 
     return response.send();
 })
+
+routes.post("", createUserController)
 
 export default routes;
