@@ -11,6 +11,7 @@ class S3Storage {
         this.client = new aws.S3({
             region: 'sa-east-1'
         })
+        console.log(this.client)
     }
 
     async saveFile(filename: string): Promise<void> {
