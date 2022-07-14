@@ -3,8 +3,10 @@ import { IUserLogin } from "../../interfaces/users";
 import { AppError } from "../../errors/AppError";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import {User} from "../../entities/user.entity"
 
 const userLoginService = async ({ email, password }: IUserLogin) => {
+
   const userRepository = AppDataSource.getRepository(User);
 
   const users = await userRepository.find();

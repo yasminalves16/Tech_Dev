@@ -9,6 +9,7 @@ const app = express();
 app.use(express.json());
 
 app.use("/", routes);
+
 app.use("/login", loginRoute);
 
 app.use(handleAppErrorMiddeware);

@@ -4,12 +4,15 @@ import mime from "mime"
 import multerConfig from "../config/multer"
 import fs from "fs";
 
+
 class S3Storage {
     private client: S3;
 
     constructor(){
         this.client = new aws.S3({
-            region: 'sa-east-1'
+            region: 'sa-east-1',
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
         })
         console.log(this.client)
     }

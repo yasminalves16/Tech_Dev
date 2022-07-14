@@ -1,5 +1,5 @@
 import { AppDataSource } from "../../data-source";
-//import { User } from "entites";
+import { User } from "../../entities/user.entity";
 import { IUserRequest, IUser } from "../../interfaces/users";
 import * as bcrypt from "bcryptjs";
 
@@ -29,5 +29,5 @@ export const createUserService = async ({
 
   await userRepository.save(newUser);
 
-  //return { ...newUser, password: "" };
+  return { ...newUser, password: "" };
 };
