@@ -1,5 +1,5 @@
 import { createUserController } from './../controllers/users/createUser.controller';
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import  multerConfig  from '../config/multer';
 import multer from 'multer';
 import UploadImagesService from '../services/images/UploadimagesService';
