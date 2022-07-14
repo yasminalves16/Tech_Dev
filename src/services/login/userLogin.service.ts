@@ -4,7 +4,6 @@ import { AppError } from "../../errors/AppError";
 import { User } from "../../entities/user.entity";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
-import {User} from "../../entities/user.entity"
 
 const userLoginService = async ({ email, password }: IUserLogin) => {
 
