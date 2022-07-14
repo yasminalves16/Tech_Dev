@@ -1,9 +1,11 @@
 import { createUserController } from './../controllers/users/createUser.controller';
-import { Router, Request, Response } from 'express';
+import { Router } from 'express';
 import  multerConfig  from '../config/multer';
 import multer from 'multer';
 import UploadImagesService from '../services/images/UploadimagesService';
 import DeleteImagesService from '../services/images/DeleteimagesService'
+import { listUserController } from '../controllers/users/listUser.controller';
+import { deleteUserController } from '../controllers/users/deleteUser.controller';
 
 const routes = Router();
 const upload = multer(multerConfig)
@@ -30,5 +32,7 @@ routes.delete('/:filename', async (request, response) =>{
 })
 
 routes.post("", createUserController)
+routes.get("/:id", listUserController)
+routes.delete("/:id", deleteUserController)
 
 export default routes;
