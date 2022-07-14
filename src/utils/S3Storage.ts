@@ -4,7 +4,6 @@ import mime from "mime"
 import multerConfig from "../config/multer"
 import fs from "fs";
 
-
 class S3Storage {
     private client: S3;
 
@@ -14,7 +13,6 @@ class S3Storage {
             accessKeyId: process.env.AWS_ACCESS_KEY_ID,
             secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
         })
-        console.log(this.client)
     }
 
     async saveFile(filename: string): Promise<void> {
@@ -44,6 +42,7 @@ class S3Storage {
         await this.client.deleteObject({
             Bucket: 'dev-tec-m4',
             Key: filename,
+          
         })
         .promise()
     }
