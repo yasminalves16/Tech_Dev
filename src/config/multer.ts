@@ -1,38 +1,46 @@
+import multer from "multer";
+import path from "path";
+import crypto from "crypto"
+import {Request} from "express"
 
-import { randomBytes } from "crypto"
-import { diskStorage, Options } from "multer"
-import { resolve } from "path"
+const tmpFolder = path.resolve(__dirname, '..', '..', 'tmp')
 
-export const multerConfig = {
-    dest: resolve(__dirname, '..', '..', 'uploads', 'users'),
-    storage: diskStorage({
-        destination:(request, file, callback) =>{
-            callback(null, resolve(__dirname, '..', '..', 'uploads', 'users'))
-        },
-        filename:(request, file, callback) =>{
-            randomBytes(16, (error, hash) =>{
-                if(error){
-                    callback(error, file.filename)
-                }
-                const filename = `${hash.toString('hex')}.png`
-                callback(null, Date.now().toString+ '_' + filename)
-            })
+export default {
+    directory: tmpFolder,
+    storage: multer.diskStorage({
+        destination: tmpFolder,
+        filename(request, file, callback){
+            const fileHash = crypto.randomBytes(10).toString('hex');
+
+            const filename = `${fileHash}-${file.originalname}`;
+
+            return callback(null, filename);
         }
     }),
-    limits: {
-        fileSize: 5 * 1024 * 1024 //5MB
-    },
-    fileFilter: (request, file, callback) =>{
-        const formats = [
-            'image/jpg',
-            'image/jpeg',
-            'image/png'
+    fileFilter: (req: Request, file: any, cb: any) => {
+        const allowedMimes = [
+          "image/jpeg",
+          "image/pjpeg",
+          "image/png",
+          "image/gif",
+          "video/mp4",
+          "audio/mp3",
+          "video/wmv",
+          "video/mkv",
+          "video/avi",
+          "document/pdf",
+          "document/txt",
+          "document/zip",
+          "document/rar",
+          "document/7z",
+          "document/doc",
+          "document/xls"
         ];
-
-        if(formats.includes(file.mimetype)){
-            callback(null, true)
-        }else{
-            callback(new Error('Formats not accepted'))
+        if (allowedMimes.includes(file.mimetype)) {
+          cb(null, true);
+        } else {
+          cb(new Error("Invalid file type."));
         }
-    }
-} as Options
+      },
+    
+}
