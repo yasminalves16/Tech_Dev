@@ -46,6 +46,7 @@ export class User {
 
   @OneToMany((type) => Post, (post) => post.user)
   posts: Post[];
+  
   //verificar se estão corretos os relacionamentos, e não sei como adicionar o isActive na jointable se alguem souber tamo junto
   /* 
 
