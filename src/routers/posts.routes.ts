@@ -12,5 +12,4 @@ postsRoutes.patch(":id", verifyToken, updatePostController);
 postsRoutes.get("", verifyToken,listPostController);
 postsRoutes.get("/:userId", verifyToken, deletePostController);
 
-
 export default postsRoutes;
