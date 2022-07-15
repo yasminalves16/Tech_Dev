@@ -1,8 +1,10 @@
 import { Router } from "express";
 import updatePostController from "../controllers/posts/updatePost.controller";
+import createPostController from "../controllers/posts/createPost.controller";
 
-const postsRoutes = Router()
+const postsRoutes = Router();
 
-postsRoutes.patch(":id", updatePostController)
+postsRoutes.post("/:userId", createPostController);
+postsRoutes.patch(":id", updatePostController);
 
-export default postsRoutes
+export default postsRoutes;
