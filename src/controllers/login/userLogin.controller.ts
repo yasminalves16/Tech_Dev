@@ -1,8 +1,8 @@
-import { Request, Response } from "express";
-import { AppError } from "../../errors/AppError";
+import { NextFunction, Request, Response } from "express";
+
 import userLoginService from "../../services/login/userLogin.service";
 
-const userLoginController = async (req: Request, res: Response) => {
+const userLoginController = async (req: Request, res: Response, next:NextFunction) => {
   try {
     const { email, password } = req.body;
 
@@ -10,11 +10,7 @@ const userLoginController = async (req: Request, res: Response) => {
 
     return res.status(200).json(token);
   } catch (error) {
-    if (error instanceof AppError) {
-      return res.status(error.statusCode).json({
-        error: error.message,
-      });
-    }
+    next(error)
   }
 };
 
