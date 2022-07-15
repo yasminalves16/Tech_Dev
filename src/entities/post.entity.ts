@@ -1,9 +1,9 @@
 import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 import { Comment } from "./comment.entity";
 import { User } from "./user.entity";
+import { v4 as uuid } from "uuid";
 
-@Entity()
-
+@Entity("posts")
 export class Post {
   @PrimaryGeneratedColumn("uuid")
   readonly id: string;

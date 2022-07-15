@@ -1,17 +1,26 @@
 export interface IUserRequest {
-    name: string
-    email: string
-    password: string
-    birthdate: Date
-    avatarurl?: string
+  name: string;
+  email: string;
+  password: string;
+  birthdate: Date;
+  avatarUrl?: string;
 }
 export interface IUser extends IUserRequest {
-    id: string
-    createdAt: Date
-    updatedAt: Date
-    active: boolean 
+  id: string;
+  createdAt: Date;
+  updatedAt: Date;
+  active: boolean;
 }
+
 export interface IUserLogin {
     email: string
     password: string
+}
+
+export interface IUpdateUser {
+    name?: string
+    email?: string
+    password?: string
+    birthdate?: Date
+    avatarurl?: string
 }

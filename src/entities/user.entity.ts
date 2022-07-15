@@ -1,13 +1,13 @@
+
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
 import { Exclude } from "class-transformer"
 import { Post } from "./post.entity";
 import { Comment } from "./comment.entity";
 
-@Entity('users')
-@Unique(['email'])
-
-export class User{
-  @PrimaryGeneratedColumn('uuid')
+@Entity("users")
+@Unique(["email"])
+export class User {
+  @PrimaryGeneratedColumn("uuid")
   readonly id: string;
 
   @Column()
@@ -32,11 +32,12 @@ export class User{
   @Column()
   avatarUrl: string;
 
-  @Column()
+  @Column("boolean", { default: true })
   active: boolean;
 
   @OneToMany((type) => Post, (post) => post.user)
-  posts: Post[]
+
+  posts: Post[];
 
   @OneToMany((type) => Comment, (comment) => comment.user)
   comments: Comment[]
@@ -54,5 +55,4 @@ export class User{
       name: 'followFriendId'
     },
   }) */
-
 }
