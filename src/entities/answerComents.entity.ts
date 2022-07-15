@@ -2,7 +2,7 @@ import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, Up
 import { Comment } from "./comment.entity";
 import { User } from "./user.entity";
 
-@Entity()
+@Entity("answers")
 
 export class Answer{
   @PrimaryGeneratedColumn('uuid')
@@ -20,6 +20,6 @@ export class Answer{
   @ManyToOne((type) => Comment, (comment) => comment.answer)
   comment: Comment;
 
-  @ManyToOne((type) => User, (user) => user.comments)
+  @ManyToOne((type) => User, (user) => user.answer)
   user: User;
 }
