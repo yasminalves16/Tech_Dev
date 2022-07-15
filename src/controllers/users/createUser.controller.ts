@@ -1,11 +1,15 @@
-import { Request, Response, NextFunction } from "express";
-import { createUserService } from "./../../services/users/createUser.service";
 
-export const createUserController = async (req: Request, res: Response, next: NextFunction) => {
+import { Request, Response } from "express";
+import { createUserService } from './../../services/users/createUser.service';
+import { instanceToPlain } from "class-transformer"
 
-  const { name, email, password, birthdate } = req.body;
 
-  const newUser = await createUserService({ name, email, password, birthdate });
+export const createUserController = async (req: Request, res: Response) => {
+  
+    const { name, email , password, birthdate} = req.body;
+  
+    const newUser = await createUserService({ name, email , password, birthdate});
+  
+    return res.status(201).json(instanceToPlain(newUser))
 
-  return res.status(201).json(newUser);
 };

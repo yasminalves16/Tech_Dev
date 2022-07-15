@@ -1,6 +1,8 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Comment } from "./comment.entity";
 import { User } from "./user.entity";
 import { v4 as uuid } from "uuid";
+
 @Entity("posts")
 export class Post {
   @PrimaryGeneratedColumn("uuid")
@@ -15,9 +17,6 @@ export class Post {
   @ManyToOne((type) => User, (user) => user.posts)
   user: User;
 
-  constructor() {
-    if (!this.id) {
-      this.id = uuid();
-    }
-  }
+  @OneToMany((type) => Comment, (comment) => comment.post)
+  comments: Comment[]
 }
