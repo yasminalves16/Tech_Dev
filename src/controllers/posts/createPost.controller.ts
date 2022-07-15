@@ -3,7 +3,7 @@ import createPostService from "../../services/posts/createPost.service";
 
 const createPostController = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const userId = req.user.id;
+    const userId = req.user;
 
     const { description, media } = req.body;
 

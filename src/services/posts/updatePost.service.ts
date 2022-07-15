@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { AppError } from "../../errors/AppError";
-//import { IPost } from "../../interfaces/posts"
-//import { Post } from "../../entities/post.entity"
+import { IPost } from "../../interfaces/posts"
+import { Post } from "../../entities/post.entity"
 
 const updatePostService = async (
   id: string,
@@ -26,7 +26,7 @@ const updatePostService = async (
 
   const updatedPost = await postRepository.findOneBy({ id });
 
-  return updatedPost;
+  return updatedPost!;
 };
 
 export default updatePostService;

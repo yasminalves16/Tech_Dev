@@ -9,7 +9,7 @@ const deletePostController = async (req: Request, res: Response) => {
 
       const post = await deletePostService(id);
 
-      return res.status(200).json({ message: 'Post deleted with sucess!' });
+      return res.status(204).json({ message: 'Post deleted with sucess!' });
 
     } catch (error) {
 
