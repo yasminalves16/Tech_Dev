@@ -2,32 +2,33 @@ import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
 import { IUserRequest, IUser } from "../../interfaces/users";
 import * as bcrypt from "bcryptjs";
+import { AppError } from "../../errors/AppError"
 
-export const createUserService = async ({
-  name,
-  email,
-  password,
-  birthdate,
-}: IUserRequest): Promise<IUser> => {
-  const userRepository = AppDataSource.getRepository(User);
 
-  const userAlreadyExists = await userRepository.findOneBy({
-    email,
-  });
+export const createUserService = async ({name,email,password,birthdate}: IUserRequest): Promise<IUser> => {
 
-  if (userAlreadyExists) {
-    throw new Error("Email already exists");
-  }
-  const hashedPassword = await bcrypt.hash(password, 10);
+    const userRepository = AppDataSource.getRepository(User);
 
-  const newUser = userRepository.create({
-    name,
-    email,
-    birthdate,
-    password: hashedPassword,
-  });
+    const userAlreadyExists = await userRepository.findOneBy({
+        email,
+    });
 
-  await userRepository.save(newUser);
+    if (userAlreadyExists) {
+        throw new AppError("Email already exists");
+    }
 
-  return { ...newUser, password: "" };
+    const hashedPassword = await bcrypt.hash(password, 10);
+
+    const newUser = userRepository.create({
+        name,
+        email,
+        birthdate,
+        password: hashedPassword,
+        avatarUrl: "teste",
+        active: true
+    });
+
+    await userRepository.save(newUser);
+
+    return newUser;
 };

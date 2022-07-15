@@ -11,7 +11,16 @@ export interface IUser extends IUserRequest {
   updatedAt: Date;
   active: boolean;
 }
+
 export interface IUserLogin {
-  email: string;
-  password: string;
+    email: string
+    password: string
+}
+
+export interface IUpdateUser {
+    name?: string
+    email?: string
+    password?: string
+    birthdate?: Date
+    avatarurl?: string
 }
