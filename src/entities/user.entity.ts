@@ -1,17 +1,9 @@
-import {
-  Column,
-  CreateDateColumn,
-  DeleteDateColumn,
-  Entity,
-  JoinTable,
-  ManyToMany,
-  OneToMany,
-  PrimaryGeneratedColumn,
-  Unique,
-  UpdateDateColumn,
-} from "typeorm";
-import { Exclude } from "class-transformer";
+
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
+import { Exclude } from "class-transformer"
 import { Post } from "./post.entity";
+import { Comment } from "./comment.entity";
+import { Answer } from "./answerComents.entity";
 
 @Entity("users")
 @Unique(["email"])
@@ -45,13 +37,18 @@ export class User {
   active: boolean;
 
   @OneToMany((type) => Post, (post) => post.user)
-  posts: Post[];
-  //verificar se estão corretos os relacionamentos, e não sei como adicionar o isActive na jointable se alguem souber tamo junto
-  /* 
 
-  @OneToMany((type) => Comment, commet => comment.user)
+  posts: Post[];
+
+  @OneToMany((type) => Comment, (comment) => comment.user)
   comments: Comment[]
 
+  @OneToMany((type) => Answer, (answers) => answers.comment)
+  answer: Answer[];
+
+  
+  //verificar se estão corretos os relacionamentos, e não sei como adicionar o isActive na jointable se alguem souber tamo junto 
+  /* 
   @ManyToMany((type) => FollowFriends, followFriend => followFriend.user)
   @JoinTable({
     name: "controll",

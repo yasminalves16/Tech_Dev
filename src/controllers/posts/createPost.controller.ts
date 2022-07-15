@@ -1,20 +1,17 @@
-import { Request, Response } from "express";
-import { AppError } from "../../errors/AppError";
+import { NextFunction, Request, Response } from "express";
 import createPostService from "../../services/posts/createPost.service";
 
-const createPostController = async (req: Request, res: Response) => {
+const createPostController = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const { description, media, userId } = req.body;
+    const userId = req.user;
+
+    const { description, media } = req.body;
 
     const post = await createPostService({ description, media }, userId);
 
     return res.status(201).json(post);
   } catch (error) {
-    if (error instanceof AppError) {
-      return res.status(error.statusCode).json({
-        message: error.message,
-      });
-    }
+    next(error)
   }
 };
 
