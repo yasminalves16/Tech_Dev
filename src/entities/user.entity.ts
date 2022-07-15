@@ -1,5 +1,7 @@
 import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
 import { Exclude } from "class-transformer"
+import { Post } from "./post.entity";
+import { Comment } from "./comment.entity";
 
 @Entity('users')
 @Unique(['email'])
@@ -33,14 +35,14 @@ export class User{
   @Column()
   active: boolean;
 
-  //verificar se estão corretos os relacionamentos, e não sei como adicionar o isActive na jointable se alguem souber tamo junto 
-/* 
-  @OneToMany((type) => Post, post => post.user)
+  @OneToMany((type) => Post, (post) => post.user)
   posts: Post[]
 
-  @OneToMany((type) => Comment, commet => comment.user)
+  @OneToMany((type) => Comment, (comment) => comment.user)
   comments: Comment[]
-
+  
+  //verificar se estão corretos os relacionamentos, e não sei como adicionar o isActive na jointable se alguem souber tamo junto 
+  /* 
   @ManyToMany((type) => FollowFriends, followFriend => followFriend.user)
   @JoinTable({
     name: "controll",
