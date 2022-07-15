@@ -1,27 +1,27 @@
-import { createUserController } from './../controllers/users/createUser.controller';
-import { Router, Request, Response } from 'express';
 import  multerConfig  from '../config/multer';
 import multer from 'multer';
 import UploadImagesService from '../services/images/UploadimagesService';
 import DeleteImagesService from '../services/images/DeleteimagesService'
+import { Router } from "express";
 
-const routes = Router();
+const imageRoute = Router();
+
 const upload = multer(multerConfig)
 
-routes.post('/', upload.single('image'), async (request, response )=>{
+imageRoute.post("", upload.single('image'), async (request, response )=>{
 
-    const { file } = request.body;
-
+    const { file } = request;
+    console.log(request.file)
     const uploadImagesService = new UploadImagesService();
 
-    await uploadImagesService.execute(file);
+    await uploadImagesService.execute(file!);
 
     return response.send();
 })
 
-routes.delete('/:filename', async (request, response) =>{
+imageRoute.delete('/:filename', async (request, response) =>{
     const { filename } = request.params;
-
+    
     const deleteImagesService = new DeleteImagesService();
 
     await deleteImagesService.execute(filename);
@@ -29,6 +29,4 @@ routes.delete('/:filename', async (request, response) =>{
     return response.send();
 })
 
-routes.post("", createUserController)
-
-export default routes;
+export default imageRoute

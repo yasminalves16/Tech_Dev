@@ -9,7 +9,9 @@ class S3Storage {
 
     constructor(){
         this.client = new aws.S3({
-            region: 'sa-east-1'
+            region: 'sa-east-1',
+            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
         })
     }
 
@@ -40,6 +42,7 @@ class S3Storage {
         await this.client.deleteObject({
             Bucket: 'dev-tec-m4',
             Key: filename,
+          
         })
         .promise()
     }
