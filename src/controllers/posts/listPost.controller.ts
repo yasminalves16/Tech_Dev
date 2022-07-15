@@ -1,9 +1,13 @@
-import { Request, Response } from "express"
+import { NextFunction, Request, Response } from "express"
 import listPostsService from "../../services/posts/listPost.service"
 
-export const listPostController = async (req:Request, res: Response) => {
-   
-        const {page, take} = req.query
-        const posts = await listPostsService(page,take)
-        return res.json(posts)    
+export const listPostController = async (req:Request, res: Response, next:NextFunction) => {
+        try{
+         const {page, take} = req.query
+         const posts = await listPostsService(page,take)
+         return res.json(posts) 
+        } catch(error){
+              next(error)
+          }
+           
 }
