@@ -3,7 +3,6 @@ import userRoutes from "./routers/users.routes";
 import loginRoute from "./routers/login.routes";
 import imageRoute from "./routers/image.routes";
 import postsRoutes from "./routers/posts.routes"
-
 import "express-async-errors";
 import handleAppErrorMiddeware from "./middlewares/handleAppError.middleware";
 
