@@ -12,7 +12,7 @@ export class Post {
   description: string;
 
   @Column()
-  media: string;
+  media?: string;
 
   @ManyToOne((type) => User, (user) => user.posts)
   user: User;
