@@ -23,4 +23,6 @@ app.use("/comments", commentRoutes)
 
 app.use(handleAppErrorMiddeware);
 
+app.listen(process.env.PORT || 3000, () => console.log("Running at http://localhost:3000"))
+
 export default app;
