@@ -17,8 +17,8 @@ export class Comment{
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  commentId?: Comment
+  // @Column()
+  // commentId?: Comment
 
   @ManyToOne((type) => Post, (post) => post.comments)
   post: Post;
