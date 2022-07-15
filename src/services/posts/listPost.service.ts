@@ -32,7 +32,7 @@ return {
   count: total,
   currentPage: page, 
   lastPage: lastPage,
-  data: [...result],
+  posts: [...result],
 }
 }
 
