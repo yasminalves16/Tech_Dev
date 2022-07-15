@@ -6,7 +6,7 @@ import ensureAuthMiddleware from "../middlewares/verifyToken.middleware";
 
 const postsRoutes = Router();
 
-postsRoutes.post("/:userId", createPostController);
+postsRoutes.post("", createPostController);
 postsRoutes.patch(":id", updatePostController);
 postsRoutes.get("", listPostController);
 
