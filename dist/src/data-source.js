@@ -18,8 +18,8 @@ exports.AppDataSource = process.env.NODE_ENV === 'test'
             : false,
         synchronize: false,
         logging: true,
-        entities: process.env.NODE_ENV === "production" ? ["dist/entities/*.js"]
+        entities: process.env.NODE_ENV === "production" ? ["dist/src/entities/*.js"]
             : ["src/entities/*.ts"],
-        migrations: process.env.NODE_ENV === "production" ? ["dist/migrations/*.js"]
+        migrations: process.env.NODE_ENV === "production" ? ["dist/src/migrations/*.js"]
             : ['src/migrations/*.ts'],
     });
