@@ -6,7 +6,7 @@ import verifyToken from "../middlewares/verifyToken.middleware"
 
 const postsRoutes = Router();
 
-postsRoutes.post("/:userId", verifyToken , createPostController);
+postsRoutes.post("", verifyToken , createPostController);
 postsRoutes.patch(":id", verifyToken, updatePostController);
 postsRoutes.get("", verifyToken,listPostController);
 
