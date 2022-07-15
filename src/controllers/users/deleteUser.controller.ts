@@ -6,7 +6,6 @@ export const deleteUserController = async (req: Request, res: Response,next: Nex
   try{
   const id = req.params.id
   await deleteUserService(id)
-
   return res.status(204).send()
   }catch(error){
     next(error)
