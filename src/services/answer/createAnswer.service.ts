@@ -4,7 +4,7 @@ import { Comment } from "../../entities/comment.entity";
 import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/AppError";
 
-const createAnswerService = async (commentId: string, userId: string, answer: Answer) => {
+const createAnswerService = async (commentId: string, userId: string, answer: Answer): Promise<Answer> => {
   const answerRepository = AppDataSource.getRepository(Answer)
   const userRepository = AppDataSource.getRepository(User)
   const commentsRepository = AppDataSource.getRepository(Comment)
