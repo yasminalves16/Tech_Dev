@@ -7,21 +7,27 @@ const updateCommentService = async (id: string, description: string, userId:stri
 
     const commentRepository = AppDataSource.getRepository(Comment);
 
-    const findComment = await commentRepository.findOneBy({
-        id
+    const findComment = await commentRepository.findOne({
+        where:{
+            id: id
+        },
+        relations: {
+            user: true
+        }
     });
     
     if (!findComment) {
         throw new AppError("Post not found", 404);
     }
 
-    // if(findComment.user.id != userId) {
-    //     throw new AppError("User not authorized", 401)
-    // } NÃO CONSEGUI
+    if(findComment.user.id != userId) {
+        throw new AppError("User not authorized", 401)
+    }
 
+    
     findComment.description = description
 
-    await commentRepository.update({ id }, findComment);
+    await commentRepository.save(findComment);
 
     const updatedComment = await commentRepository.findOneBy({ id });
   
