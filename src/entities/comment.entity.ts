@@ -4,7 +4,7 @@ import { Post } from "./post.entity";
 import { User } from "./user.entity";
 import { Answer } from "./answerComents.entity";
 
-@Entity()
+@Entity('comments')
 
 export class Comment{
   @PrimaryGeneratedColumn('uuid')
