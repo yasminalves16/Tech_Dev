@@ -1,8 +1,10 @@
-import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+
+import { Column, CreateDateColumn, Entity, ManyToOne, OneToMany, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Post } from "./post.entity";
 import { User } from "./user.entity";
+import { Answer } from "./answerComents.entity";
 
-@Entity()
+@Entity('comments')
 
 export class Comment{
   @PrimaryGeneratedColumn('uuid')
@@ -17,8 +19,8 @@ export class Comment{
   @UpdateDateColumn()
   updatedAt: Date;
 
-  // @Column()
-  // commentId?: Comment
+  @OneToMany((type) => Answer, (answers) => answers.comment)
+  answer: Answer[];
 
   @ManyToOne((type) => Post, (post) => post.comments)
   post: Post;

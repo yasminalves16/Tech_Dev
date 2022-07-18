@@ -3,6 +3,7 @@ import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMa
 import { Exclude } from "class-transformer"
 import { Post } from "./post.entity";
 import { Comment } from "./comment.entity";
+import { Answer } from "./answerComents.entity";
 
 @Entity("users")
 @Unique(["email"])
@@ -41,6 +42,10 @@ export class User {
 
   @OneToMany((type) => Comment, (comment) => comment.user)
   comments: Comment[]
+
+  @OneToMany((type) => Answer, (answers) => answers.comment)
+  answer: Answer[];
+
   
   //verificar se estão corretos os relacionamentos, e não sei como adicionar o isActive na jointable se alguem souber tamo junto 
   /* 

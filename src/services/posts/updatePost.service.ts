@@ -1,7 +1,7 @@
 import { AppDataSource } from "../../data-source";
 import { AppError } from "../../errors/AppError";
-//import { IPost } from "../../interfaces/posts"
-//import { Post } from "../../entities/post.entity"
+import { IPost } from "../../interfaces/posts"
+import { Post } from "../../entities/post.entity"
 
 const updatePostService = async (
   id: string,
@@ -15,18 +15,20 @@ const updatePostService = async (
   if (!post) {
     throw new AppError("post not found", 404);
   }
+  
+  console.log(post)
 
-  if (post.user.id !== userId) {
+   if (post.user.id !== userId) {
     throw new AppError("cannot edit this post", 400);
-  }
-
+  } 
+  
   post.description = description;
 
   await postRepository.update({ id }, post);
 
   const updatedPost = await postRepository.findOneBy({ id });
 
-  return updatedPost;
+  return updatedPost!;
 };
 
 export default updatePostService;

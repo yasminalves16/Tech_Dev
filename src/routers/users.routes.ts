@@ -4,6 +4,7 @@ import { Router } from 'express';
 import { listUserController } from '../controllers/users/listUser.controller';
 import { deleteUserController } from '../controllers/users/deleteUser.controller';
 
+
 const userRoutes = Router();
 
 userRoutes.post("", createUserController)
