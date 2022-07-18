@@ -24,6 +24,7 @@ const updateCommentService = async (id: string, description: string, userId:stri
         throw new AppError("User not authorized", 401)
     }
 
+    
     findComment.description = description
 
     await commentRepository.save(findComment);
