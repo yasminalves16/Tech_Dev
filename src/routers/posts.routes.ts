@@ -10,6 +10,6 @@ const postsRoutes = Router();
 postsRoutes.post("", verifyToken , createPostController);
 postsRoutes.patch("/:id", verifyToken, updatePostController);
 postsRoutes.get("", verifyToken,listPostController);
-postsRoutes.get("/:userId", verifyToken, deletePostController);
+postsRoutes.delete("/:userId", verifyToken, deletePostController);
 
 export default postsRoutes;

@@ -4,7 +4,6 @@ import listCommentsController from "../controllers/comments/listComments.control
 import updateCommentController from "../controllers/comments/updateComment.controller";
 import verifyToken from "../middlewares/verifyToken.middleware";
 
-
 const commentRoutes = Router();
 
 commentRoutes.post("/:postId", verifyToken, createCommentController )

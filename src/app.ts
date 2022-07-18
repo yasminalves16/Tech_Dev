@@ -6,6 +6,7 @@ import postsRoutes from "./routers/posts.routes"
 import "express-async-errors";
 import handleAppErrorMiddeware from "./middlewares/handleAppError.middleware";
 import commentRoutes from "./routers/comments.routes";
+import answerRoutes from "./routers/answers.routes";
 
 const app = express();
 
@@ -20,6 +21,8 @@ app.use("/media", imageRoute);
 app.use("/posts", postsRoutes);
 
 app.use("/comments", commentRoutes)
+
+app.use("/answers", answerRoutes)
 
 app.use(handleAppErrorMiddeware);
 
