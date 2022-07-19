@@ -15,6 +15,4 @@ export class FriendControll {
   @JoinColumn()
   followFriendId: Friend;
 
-
-
 }

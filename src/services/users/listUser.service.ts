@@ -9,6 +9,9 @@ const listUserService = async (id: string): Promise<IUserRequest> =>{
   const user = await userRepository.findOne({
     where:{
       id
+    },
+    relations:{
+      friends: true
     }
   })
 
