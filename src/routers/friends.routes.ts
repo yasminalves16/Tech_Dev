@@ -9,7 +9,9 @@ import addFriendController from '../controllers/friends/addFriend.controller';
 const friendRoutes = Router();
 
 
+
 friendRoutes.post("",verifyToken, addFriendController)
+// friendRoutes.delete("/:id",verifyToken, addFriendController)
 
 
 

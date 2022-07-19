@@ -3,16 +3,14 @@ import { User } from "../../entities/user.entity";
 import { AppError } from "../../errors/AppError";
 import { IUserRequest } from "../../interfaces/users";
 
-const listUserService = async (id: string): Promise<IUserRequest> =>{
+const listUserService = async (id: string): Promise<any> =>{
   const userRepository = AppDataSource.getRepository(User)
 
   const user = await userRepository.findOne({
     where:{
       id
     },
-    relations:{
-      friends: true
-    }
+    relations:["follows","followers","followers.user", "follows.follow"]
   })
 
   if(!user){
