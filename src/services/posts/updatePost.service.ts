@@ -6,7 +6,8 @@ import { Post } from "../../entities/post.entity"
 const updatePostService = async (
   id: string,
   userId: string,
-  description: string
+  description?: string,
+  media?: string
 ): Promise<IPost> => {
   const postRepository = AppDataSource.getRepository(Post);
 
@@ -15,14 +16,14 @@ const updatePostService = async (
   if (!post) {
     throw new AppError("post not found", 404);
   }
-  
-  console.log(post)
 
    if (post.user.id !== userId) {
     throw new AppError("cannot edit this post", 400);
   } 
   
-  post.description = description;
+  if(description) post.description = description;
+
+  if(media) post.media = media;
 
   await postRepository.update({ id }, post);
 
