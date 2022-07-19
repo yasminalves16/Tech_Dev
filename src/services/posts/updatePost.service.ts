@@ -15,11 +15,13 @@ const updatePostService = async (
   if (!post) {
     throw new AppError("post not found", 404);
   }
+  
+  console.log(post)
 
-  if (post.user.id !== userId) {
+   if (post.user.id !== userId) {
     throw new AppError("cannot edit this post", 400);
-  }
-
+  } 
+  
   post.description = description;
 
   await postRepository.update({ id }, post);

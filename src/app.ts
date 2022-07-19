@@ -1,4 +1,3 @@
-import { AppDataSource } from './data-source';
 import express from "express";
 import userRoutes from "./routers/users.routes";
 import loginRoute from "./routers/login.routes";
@@ -7,28 +6,27 @@ import postsRoutes from "./routers/posts.routes"
 import "express-async-errors";
 import handleAppErrorMiddeware from "./middlewares/handleAppError.middleware";
 import commentRoutes from "./routers/comments.routes";
+import answerRoutes from "./routers/answers.routes";
+import friendRoutes from "./routers/friends.routes";
 
 const app = express();
 
-AppDataSource.initialize().then(async()=>{
-  
-    app.use(express.json());
+app.use(express.json());
 
-    app.use("/users", userRoutes);
+app.use("/users", userRoutes);
 
-    app.use("/login", loginRoute);
+app.use("/login", loginRoute);
 
-    app.use("/media", imageRoute);
+app.use("/media", imageRoute);
 
-    app.use("/posts", postsRoutes);
+app.use("/posts", postsRoutes);
 
-    app.use("/comments", commentRoutes);
+app.use("/comments", commentRoutes)
 
-    app.use(handleAppErrorMiddeware);
+app.use("/answers", answerRoutes)
 
-    app.listen(process.env.PORT || 3000, () => console.log("Running at http://localhost:3000"))
+app.use("/friends", friendRoutes)
 
-}).catch((error)=>console.log(error))
-
+app.use(handleAppErrorMiddeware);
 
 export default app;
