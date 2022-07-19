@@ -4,6 +4,7 @@ import { User } from "../../entities/user.entity";
 import { Post } from "../../entities/post.entity";
 import { AppError } from "../../errors/AppError";
 
+
 const createPostService = async (
   { description, media }: IPostRequest,
   userId: string
@@ -20,6 +21,8 @@ const createPostService = async (
   if(!user){
     throw new AppError("user not found", 404)
   }
+
+  
 
   const post = {
     user,
