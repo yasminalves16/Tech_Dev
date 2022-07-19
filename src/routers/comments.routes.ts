@@ -8,8 +8,8 @@ import verifyToken from "../middlewares/verifyToken.middleware";
 const commentRoutes = Router();
 
 commentRoutes.post("/:postId", verifyToken, createCommentController);
-commentRoutes.get("/:postId", verifyToken, listCommentsService);
+commentRoutes.get("/:postId", verifyToken, listCommentsController);
 commentRoutes.delete("/:commentId", verifyToken, deleteCommentController);
-commentRoutes.patch("/:commentId", verifyToken);
+commentRoutes.patch("/:commentId", verifyToken, updateCommentController);
 
 export default commentRoutes;
