@@ -9,7 +9,8 @@ const handleAppErrorMiddeware = (error: Error, req: Request, res: Response, _: N
     }
 
     return res.status(500).json({
-        message: "Internal server error"
+        message: "Internal server error",
+        stack: error.stack
     })
 }
 
