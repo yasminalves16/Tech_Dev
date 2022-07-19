@@ -15,7 +15,7 @@ class S3Storage {
         })
     }
 
-    async saveFile(filename: string): Promise<void> {
+    async saveFile(filename: string): Promise<string> {
         const originalPath = path.resolve(multerConfig.directory, filename)
 
         const ContentType = mime.getType(originalPath)
@@ -36,6 +36,10 @@ class S3Storage {
         .promise()
 
         await fs.promises.unlink(originalPath)
+
+        const url = `https://dev-tec-m4.s3.sa-east-1.amazonaws.com/${filename}`
+
+        return url
     }
 
     async deleteFile(filename: string): Promise<void> {

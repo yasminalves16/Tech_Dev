@@ -1,9 +1,9 @@
 import { AppDataSource } from "../../data-source";
 import { User } from "../../entities/user.entity";
-import { IUpdateUser, IUser } from "../../interfaces/users";
+import { IUpdateUser } from "../../interfaces/users";
 import * as bcrypt from "bcryptjs";
 
-export const updateUserService = async (id: string, user: IUpdateUser) => {
+export const updateUserService = async (id: string, user: IUpdateUser, avatarUrl?: string) => {
  
     const userRepository = AppDataSource.getRepository(User);
 
@@ -21,6 +21,7 @@ export const updateUserService = async (id: string, user: IUpdateUser) => {
   const updatedUser = await userRepository.findOneBy({
     id,
   });
+  
   return { message: updatedUser };
 };
 
