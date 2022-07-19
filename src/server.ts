@@ -8,3 +8,5 @@ import { AppDataSource } from "./data-source"
 
 	app.listen(process.env.PORT || 3000, () => console.log("Running at http://localhost:3000"))
 })()
+
+g
