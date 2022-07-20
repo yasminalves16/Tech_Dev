@@ -1,5 +1,3 @@
-
-import { Entity } from 'typeorm';
 import { Comment } from './../../entities/comment.entity';
 import { Answer } from './../../entities/answerComents.entity';
 import { AppDataSource } from "../../data-source";
@@ -12,7 +10,6 @@ class DeleteComments{
 
   const answerRepository = AppDataSource.getRepository(Answer);
   const commentRepository = AppDataSource.getRepository(Comment);
-
 
   const comments = post.comments.map((entity) => {
     return entity

@@ -37,7 +37,7 @@ class S3Storage {
 
         await fs.promises.unlink(originalPath)
 
-        const url = `https://dev-tec-m4.s3.sa-east-1.amazonaws.com/${filename}`
+        const url = `${process.env.S3_STORAGE_URL}/${filename}`
 
         return url
     }
