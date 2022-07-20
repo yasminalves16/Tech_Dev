@@ -1,10 +1,9 @@
-
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
 import { Exclude } from "class-transformer"
 import { Post } from "./post.entity";
 import { Comment } from "./comment.entity";
 import { Answer } from "./answerComents.entity";
-import { FriendControll } from "./controll.entity";
+import { FollowControll } from "./controll.entity";
 
 @Entity("users")
 @Unique(["email"])
@@ -31,37 +30,25 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  avatarUrl: string;
+  @Column({nullable: true})
+  avatarUrl?: string;
 
   @Column("boolean", { default: true })
   active: boolean;
 
   @OneToMany((type) => Post, (post) => post.user)
-
   posts: Post[];
 
   @OneToMany((type) => Comment, (comment) => comment.user)
   comments: Comment[]
 
-  @OneToMany((type) => Answer, (answers) => answers.comment)
+  @OneToMany((type) => Answer, (answers) => answers.user)
   answer: Answer[];
 
-  @OneToMany((type) => FriendControll, (friendControll) => friendControll.userId)
-  friends: FriendControll[];
+  @OneToMany((type) => FollowControll, (followControll) => followControll.user)
+  follows: FollowControll[];
 
-  
-  //verificar se estão corretos os relacionamentos, e não sei como adicionar o isActive na jointable se alguem souber tamo junto 
-  /* 
-  @ManyToMany((type) => FollowFriends, followFriend => followFriend.user)
-  @JoinTable({
-    name: "controll",
-    joinColumn:{
-      name: 'userId',
-      referencedColumnName: "id"
-    },
-    inverseJoinColumn:{
-      name: 'followFriendId'
-    },
-  }) */
+  @OneToMany((type) => FollowControll, (followControll) => followControll.follow)
+  followers: FollowControll[];
+ 
 }

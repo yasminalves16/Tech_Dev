@@ -1,5 +1,6 @@
 import { NextFunction, Request, Response } from "express"
 import updateAnswerService from "../../services/answer/updateAnswer.service"
+import { instanceToPlain } from "class-transformer"
 
 const updateAnswerController = async (req: Request, res: Response, next: NextFunction ) =>{
     try {
@@ -10,7 +11,7 @@ const updateAnswerController = async (req: Request, res: Response, next: NextFun
 
       const updateAnswer = await updateAnswerService(id, userId, description)
   
-      return res.status(201).json(updateAnswer)
+      return res.status(201).json(instanceToPlain(updateAnswer))
   
     } catch (error) {
       next(error)

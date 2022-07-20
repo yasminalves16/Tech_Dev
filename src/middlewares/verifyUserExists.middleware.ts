@@ -7,11 +7,11 @@ const verifyUserExists = async (
   res: Response,
   next: NextFunction
 ) => {
-  const userId = req.params.userId;
+  const id = req.params.id;
 
   const userRepository = AppDataSource.getRepository(User);
 
-  const user = await userRepository.findOneBy({ id: userId });
+  const user = await userRepository.findOneBy({ id: id });
 
   if (!user) {
     return res.status(404).json({

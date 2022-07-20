@@ -7,17 +7,13 @@ const deleteUserService = async (id: string): Promise<void> =>{
 
   const user = await userRepository.findOne({where: {id}})
 
-  if(!user){
-    throw new AppError("user not found", 404)
-  }
-
-  if(!user.active){
+  if(!user!.active){
     throw new AppError("user already deactivated", 400)
   }
 
-  user.active = false
+  user!.active = false
 
-  await userRepository.update({id}, user)
+  await userRepository.update({id}, user!)
 }
 
 export default deleteUserService

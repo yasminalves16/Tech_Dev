@@ -21,7 +21,6 @@ const deleteAnswerCommentService = async (userId: string, answerId: string) => {
 
   await answer.delete(answerComment.id);
 
-  return "Comment answer is deleted with success";
 };
 
 export default deleteAnswerCommentService;

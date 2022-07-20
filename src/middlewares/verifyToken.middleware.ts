@@ -16,6 +16,7 @@ const verifyToken = (req: Request, res: Response, next: NextFunction) => {
                 message: "Invalid token"
             })
         }
+        
         req.user = decoded.id
         req.email = decoded.email
         

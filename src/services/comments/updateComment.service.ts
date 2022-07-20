@@ -29,10 +29,7 @@ const updateCommentService = async (id: string, description: string, userId:stri
 
     await commentRepository.save(findComment);
 
-    const updatedComment = await commentRepository.findOneBy({ id });
-  
-    return updatedComment!;
-    
+    return findComment
 };
 
 export default updateCommentService;
