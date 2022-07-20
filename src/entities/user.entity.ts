@@ -31,8 +31,8 @@ export class User {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column()
-  avatarUrl: string;
+  @Column({nullable: true})
+  avatarUrl?: string;
 
   @Column("boolean", { default: true })
   active: boolean;

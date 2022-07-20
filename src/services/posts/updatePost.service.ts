@@ -3,12 +3,8 @@ import { AppError } from "../../errors/AppError";
 import { IPost } from "../../interfaces/posts"
 import { Post } from "../../entities/post.entity"
 
-const updatePostService = async (
-  id: string,
-  userId: string,
-  description?: string,
-  media?: string
-): Promise<IPost> => {
+const updatePostService = async ( id: string, userId: string, description?: string, media?: string ): Promise<IPost> => {
+
   const postRepository = AppDataSource.getRepository(Post);
 
   const post = await postRepository.findOneBy({ id });
@@ -17,7 +13,7 @@ const updatePostService = async (
     throw new AppError("post not found", 404);
   }
 
-   if (post.user.id !== userId) {
+  if (post.user.id !== userId) {
     throw new AppError("cannot edit this post", 400);
   } 
   

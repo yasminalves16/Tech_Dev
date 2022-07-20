@@ -24,7 +24,7 @@ export const createUserService = async ({name,email,password,birthdate}: IUserRe
         email,
         birthdate,
         password: hashedPassword,
-        avatarUrl: "teste",
+        avatarUrl: undefined,
         active: true
     });
 
