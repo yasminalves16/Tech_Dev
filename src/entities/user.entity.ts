@@ -1,4 +1,3 @@
-
 import { Column, CreateDateColumn, Entity, OneToMany, PrimaryGeneratedColumn, Unique, UpdateDateColumn } from "typeorm";
 import { Exclude } from "class-transformer"
 import { Post } from "./post.entity";
