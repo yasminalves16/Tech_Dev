@@ -8,7 +8,7 @@
     "dev": "ts-node-dev src/server.ts",
     "typeorm": "typeorm-ts-node-commonjs",
     "build": "tsc",
-    "start": "node dist/src/app.js"
+    "start": "node dist/src/server.js"
   },
   "repository": {
     "type": "git",
