@@ -22,5 +22,5 @@ export interface IUpdateUser {
     email?: string
     password?: string
     birthdate?: Date
-    avatarurl?: string
+    avatarUrl?: string
 }
