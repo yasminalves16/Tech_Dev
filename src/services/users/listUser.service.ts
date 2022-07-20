@@ -10,9 +10,7 @@ const listUserService = async (id: string): Promise<IUserRequest> =>{
     where:{
       id
     },
-    relations:{
-      friends: true
-    }
+    relations:["follows","followers","followers.user", "follows.follow","posts"]
   })
 
   if(!user){
