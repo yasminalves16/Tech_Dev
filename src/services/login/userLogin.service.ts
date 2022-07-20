@@ -7,6 +7,10 @@ import jwt from "jsonwebtoken";
 
 const userLoginService = async ({ email, password }: IUserLogin) => {
 
+  if ( !email || !password) {
+    throw new AppError("Missing field");
+  }
+
   const userRepository = AppDataSource.getRepository(User);
 
   const users = await userRepository.find();

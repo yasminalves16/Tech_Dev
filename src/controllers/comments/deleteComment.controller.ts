@@ -10,11 +10,10 @@ const deleteCommentController = async (
     const userId = req.user;
     const commentId = req.params.commentId;
 
-    const deletedComment = await deleteCommentService(userId, commentId);
+    await deleteCommentService(userId, commentId);
 
-    return res.status(204).json({
-      message: deletedComment,
-    });
+    return res.status(200).json({message: "Comment deleted with success"})
+    
   } catch (error) {
     next(error);
   }

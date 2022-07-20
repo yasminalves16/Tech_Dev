@@ -26,7 +26,7 @@ imageRoute.post("/post/:postId", verifyToken, upload.single('image'), async (req
     return response.json(post);
 })
 
-imageRoute.post("/user/:userId", verifyToken, upload.single('image'), async (request, response )=>{
+imageRoute.post("/user/:userId", verifyToken,  upload.single('image'), async (request, response )=>{
 
     const { file } = request;
 

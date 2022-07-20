@@ -9,14 +9,13 @@ const deleteAnswerCommentController = async (
   try {
     const userId = req.user;
     const answerId = req.params.answerId;
-    const commentAnswerDeleted = await deleteAnswerCommentService(
+    await deleteAnswerCommentService(
       userId,
       answerId
     );
 
-    return res.status(204).json({
-      message: commentAnswerDeleted,
-    });
+    return res.status(200).json({message: "Answer deleted with success"})
+
   } catch (error) {
     next(error);
   }

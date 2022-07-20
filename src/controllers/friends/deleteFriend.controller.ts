@@ -8,7 +8,7 @@ const deleteFriendController = async (req: Request, res: Response, next: NextFun
 
     await deleteFriendService(userId, followId)
 
-    return res.status(204).send()
+    return res.status(200).json({message: "Unfollow with success"})
     
   } catch (error) {
     next(error)

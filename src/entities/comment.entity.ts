@@ -19,7 +19,7 @@ export class Comment{
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @OneToMany((type) => Answer, (answers) => answers.comment)
+  @OneToMany((type) => Answer, (answers) => answers.comment, {eager: true})
   answer: Answer[];
 
   @ManyToOne((type) => Post, (post) => post.comments)

@@ -21,7 +21,6 @@ const deleteCommentService = async (userId: string, commentId: string) => {
 
   await commentRepository.delete(comment.id);
 
-  return "Comment deleted with success";
 };
 
 export default deleteCommentService;

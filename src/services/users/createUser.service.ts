@@ -17,6 +17,10 @@ export const createUserService = async ({name,email,password,birthdate}: IUserRe
         throw new AppError("Email already exists");
     }
 
+    if (!name || !email || !password || !birthdate) {
+        throw new AppError("Missing field");
+    }
+
     const hashedPassword = await bcrypt.hash(password, 10);
 
     const newUser = userRepository.create({

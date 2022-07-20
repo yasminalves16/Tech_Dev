@@ -14,10 +14,15 @@ const listPostsService = async (pg: any, tk: any):Promise<any>=> {
   const userRepository = AppDataSource.getRepository(Post)
 
   const users = await userRepository.findAndCount(
+    
     {
         take: take,
-        skip: skip
+        skip: skip,
+        relations: {
+          comments: true,
+        }
     }
+    
 );
   
 const [result, total]= users;
