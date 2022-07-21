@@ -20,7 +20,7 @@ DevTech é um projeto que foi desenvolvido no quarto módulo do curso de Desenvo
 
 ## 2. Documentação API
 
-→ _[Clique aqui para acessar a doc da API DevTech]("https://yasminalves16.github.io/tech-dev-doc/#req_c9f149ba12e341648ebf24dda9a41f64")_
+→ <a name="doc-devtech" href="https://yasminalves16.github.io/tech-dev-doc/#req_c9f149ba12e341648ebf24dda9a41f64" target="_blank">Clique aqui para acessar a doc da API DevTech</a>
 
 <a name="problema"></a>
 
