@@ -16,6 +16,6 @@ export class Post {
   @ManyToOne((type) => User, (user) => user.posts ,{eager: true})
   user: User;
 
-  @OneToMany((type) => Comment, (comment) => comment.post, {eager: true,  onDelete: "CASCADE"})
+  @OneToMany((type) => Comment, (comment) => comment.post)
   comments: Comment[]
 }
