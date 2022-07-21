@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { NextFunction, Request, Response } from "express";
 import createPostService from "../../services/posts/createPost.service";
 
@@ -9,7 +10,7 @@ const createPostController = async (req: Request, res: Response, next: NextFunct
 
     const post = await createPostService({ description, media }, userId);
 
-    return res.status(201).json(post);
+    return res.status(201).json(instanceToPlain(post));
   } catch (error) {
     next(error)
   }
