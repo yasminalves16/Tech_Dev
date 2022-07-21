@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { NextFunction, Request, Response } from "express";
 import updatePostService from "../../services/posts/updatePost.service";
 
@@ -9,7 +10,7 @@ const updatePostController = async (req: Request, res: Response, next: NextFunct
     
     const updatedPost = await updatePostService(id, user, description);
 
-    return res.status(200).json(updatedPost);
+    return res.status(200).json(instanceToPlain(updatedPost));
     
   } catch(error){
     next(error)

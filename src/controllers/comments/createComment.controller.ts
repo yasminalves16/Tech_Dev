@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer";
 import { NextFunction, Request, Response } from "express";
 import createCommentService from "../../services/comments/createComment.service";
 
@@ -8,7 +9,7 @@ const createCommentController = async (req: Request, res: Response, next: NextFu
     const comment = req.body
     const newComment = await createCommentService(postId,userId,comment)
 
-    return res.status(201).json(newComment)
+    return res.status(201).json(instanceToPlain(newComment))
 
   } catch (error) {
     next(error)
