@@ -1,3 +1,4 @@
+import { instanceToPlain } from "class-transformer"
 import { NextFunction, Request, Response } from "express"
 import createAnswerService from "../../services/answer/createAnswer.service"
 
@@ -8,7 +9,7 @@ const createAnswerController = async (req: Request, res: Response, next: NextFun
     const answer = req.body
     const newAnswer = await createAnswerService(commentId,userId,answer)
 
-    return res.status(201).json(newAnswer)
+    return res.status(201).json(instanceToPlain(newAnswer))
 
   } catch (error) {
     next(error)
